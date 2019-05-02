@@ -232,7 +232,7 @@ void Scene3D::drawAxis()
 
 void Scene3D::my_getArrays()
 {
-    std::ifstream file ("../app2/database/Circe.txt", std::ifstream::in);
+    std::ifstream file ("../app2/database/pallas.txt", std::ifstream::in);
     if (!file)
             std::perror("ifstream");
 
@@ -299,7 +299,7 @@ void Scene3D::my_getArrays()
         StrMyVertexArray[i].z = n * R;
 
 
-        n = (abs(StrMyVertexArray[i].x) + abs(StrMyVertexArray[i].y) + abs(StrMyVertexArray[i].z))/3;
+        n = sqrt(StrMyVertexArray[i].x *StrMyVertexArray[i].x + StrMyVertexArray[i].y *StrMyVertexArray[i].y + StrMyVertexArray[i].z *StrMyVertexArray[i].z);
         if(max_ < n) {
             max_ = n;
         }
@@ -336,8 +336,8 @@ void Scene3D::my_getArrays()
     std::cout << max << ' ' << min << std::endl;
     for(i = 0; i < a; i++)
     {
-        n = (abs(StrMyVertexArray[i].x) + abs(StrMyVertexArray[i].y) + abs(StrMyVertexArray[i].z))/3;
-        n = (0.4f*(n - min) - 0.7f*(n-max_))/(max_ - min);
+        n = sqrt(StrMyVertexArray[i].x *StrMyVertexArray[i].x + StrMyVertexArray[i].y *StrMyVertexArray[i].y + StrMyVertexArray[i].z *StrMyVertexArray[i].z);
+        n = (0.7f*(n - min) - 0.4f*(n-max_))/(max_ - min);
         StrMyColorArray[i].r=n;
         StrMyColorArray[i].g=n;
         StrMyColorArray[i].b=n;
